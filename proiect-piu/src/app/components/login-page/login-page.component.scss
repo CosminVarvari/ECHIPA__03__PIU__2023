@@ -1,0 +1,19 @@
+/* Center the login container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f8aaff;background: -webkit-linear-gradient(to right, #8dfff4, #f8aaff);background: linear-gradient(to right, #8dfff4, #f8aaff);
+}
+
+/* Style the login card */
+.login-card {
+  width: 400px;
+  padding: 16px;
+  background-color: lightseagreen;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: calc(100vw / 3);
+}

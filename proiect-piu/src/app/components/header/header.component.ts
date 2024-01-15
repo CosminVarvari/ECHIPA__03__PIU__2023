@@ -23,4 +23,7 @@ export class HeaderComponent {
   goToMyJourneys() {
     this.router.navigate(['my-journeys']);
   }
+  goToMyProfile() {
+    this.router.navigate(['profile']);
+  }
 }
