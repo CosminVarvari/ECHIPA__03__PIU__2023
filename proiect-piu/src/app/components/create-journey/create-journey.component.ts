@@ -98,7 +98,7 @@ export class CreateJourneyComponent implements OnInit {
 
   selectAccommodation(accomodation: any) {
     this.selectedAccommodation = accomodation;
-    console.log(this.selectAccommodation);
+    console.log(this.selectedAccommodation);
   }
 
   createJourney() {
@@ -112,7 +112,7 @@ export class CreateJourneyComponent implements OnInit {
     };
     let newJourney = {
       destination: destination,
-      accomodation: this.selectAccommodation,
+      accomodation: this.selectedAccommodation,
     };
     localStorage.setItem('journey', JSON.stringify(newJourney));
     this.router.navigate(['my-journeys']);
