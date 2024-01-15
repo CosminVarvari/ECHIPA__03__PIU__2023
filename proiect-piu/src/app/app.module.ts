@@ -17,6 +17,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MyJourneysComponent } from './components/my-journeys/my-journeys.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MyJourneysComponent } from './components/my-journeys/my-journeys.compon
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],

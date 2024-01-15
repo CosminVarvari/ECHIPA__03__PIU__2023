@@ -15,7 +15,10 @@
               [formControl]="destinationName"
               [matAutocomplete]="auto"
             />
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='filterCities($event.option.value)'>
+            <mat-autocomplete
+              #auto="matAutocomplete"
+              (optionSelected)="filterCities($event.option.value)"
+            >
               <mat-option
                 *ngFor="let option of filteredOptions | async"
                 [value]="option"
@@ -36,41 +39,88 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Choose a return date</mat-label>
-            <input matInput [matDatepicker]="pickerReturn">
+            <input matInput [matDatepicker]="pickerReturn" />
             <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="pickerReturn"
+            ></mat-datepicker-toggle>
             <mat-datepicker #pickerReturn></mat-datepicker>
           </mat-form-field>
         </form>
         <div class="move-buttons">
-            <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </mat-step>
       <mat-step label="Pick an accomodation">
         <div class="container">
-            <div class="card-wrapper" *ngFor="let accomodation of filteredAccomodations; index as i; first as isFirst">
-                <mat-card matRipple class="card" (click)="selectAccommodation(accomodation)">
-                    <mat-card-header>
-                        <mat-card-title>{{accomodation.name}}</mat-card-title>
-                        <mat-card-subtitle>{{accomodation.price}}€</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <span *ngFor="let n of numSequence(accomodation.stars);"><mat-icon>star</mat-icon></span>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nam ea, perferendis, veritatis impedit quae a ut ratione molestiae quibusdam aliquam dolores officia consectetur accusantium quas vitae pariatur aperiam velit.</p>
-                    </mat-card-content>
-                </mat-card>
-            </div>
+          <div
+            class="card-wrapper"
+            *ngFor="
+              let accomodation of filteredAccomodations;
+              index as i;
+              first as isFirst
+            "
+          >
+            <mat-card
+              matRipple
+              class="card"
+              (click)="selectAccommodation(accomodation)"
+            >
+              <mat-card-header>
+                <mat-card-title>{{ accomodation.name }}</mat-card-title>
+                <mat-card-subtitle>{{ accomodation.price }}€</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <span *ngFor="let n of numSequence(accomodation.stars)"
+                  ><mat-icon>star</mat-icon></span
+                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Facere nam ea, perferendis, veritatis impedit quae a ut
+                  ratione molestiae quibusdam aliquam dolores officia
+                  consectetur accusantium quas vitae pariatur aperiam velit.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
         <div class="move-buttons">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </mat-step>
+
+      <mat-step label="Expense Management">
+        <div class="expense-management">
+          <div class="ticket-cost">
+            <p>Airplane ticket cost: {{ calculateAirplaneTicketCost() }}€</p>
+          </div>
+          <div class="accommodation-cost">
+            <p>Accommodation cost: {{ selectedAccommodation?.price || 0 }}€</p>
+          </div>
+          <div class="additional-cost">
+            <p>Additional estimated cost: {{ calculateGeneralExpenses() }}€</p>
+          </div>
+          <div class="final-price">
+            <p>We estimate that you'll spend {{ calculateTotalCost() }}€</p>
+          </div>
+        </div>
+        <div class="move-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <div class="done-wrapper">
-            <span class="done-text">You are now done. Prepare your bags and get ready to go!</span>
-            <button class="create-button" (click)="createJourney()" mat-button>CREATE JOURNEY</button>
+          <span class="done-text"
+            >You are now done. Prepare your bags and get ready to go!</span
+          >
+          <button class="create-button" (click)="createJourney()" mat-button>
+            CREATE JOURNEY
+          </button>
         </div>
         <div class="move-buttons">
           <button mat-button matStepperPrevious>Back</button>

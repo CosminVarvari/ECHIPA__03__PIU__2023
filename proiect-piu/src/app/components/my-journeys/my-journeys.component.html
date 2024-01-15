@@ -1,6 +1,95 @@
 <div class="my-journeys">
     <app-header></app-header>
     <div class="my-journeys-content">
-        my-journeys works!
+        <h1 class="title">Welcome to your travelling history :)</h1>
+        <div class="journey-wrapper">
+            <mat-expansion-panel class="journey" [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Journey to {{ journey?.destination?.name }}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-tab-group>
+                    <mat-tab label="Destination Info" >
+                        <div class="destination">
+                            <div class="left-column">
+                                <div class="name">{{ journey?.destination?.name }}</div>
+                                <div class="dates">
+                                    <span>{{ startingDate | date }} - </span>
+                                    <span>{{ endDate | date }}</span>
+                                </div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Asperiores quisquam nihil ducimus fuga consequatur ex illum
+                                    corrupti nam provident tenetur sapiente incidunt, adipisci
+                                    fugiat, vel tempora, aut odit totam quos?
+                                </div>
+                                <span class="temperature">Temperature:
+                                    {{ journey?.destination?.temperature }}&#176;C
+                                </span>
+                            </div>
+                            <div class="weather">
+                                <img *ngIf="journey?.destination?.weather == 'cloudy'"
+                                    src="./../../../assets/images/cloudy.png" />
+                                <img *ngIf="journey?.destination?.weather == 'rainy'"
+                                    src="./../../../assets/images/rainy.png" />
+                                <img *ngIf="journey?.destination?.weather == 'lightning'"
+                                    src="./../../../assets/images/lightning.png" />
+                                <img *ngIf="journey?.destination?.weather == 'sunny'"
+                                    src="./../../../assets/images/sunny.png" />
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Accommodation Info">
+                        <mat-card matRipple class="card">
+                            <mat-card-header>
+                                <mat-card-title>{{journey?.accomodation?.name}}</mat-card-title>
+                                <mat-card-subtitle>{{journey?.accomodation?.price}}€</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <span *ngFor="let n of numSequence(journey?.accomodation?.stars!);"><mat-icon>star</mat-icon></span>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nam ea, perferendis, veritatis impedit quae a ut ratione molestiae quibusdam aliquam dolores officia consectetur accusantium quas vitae pariatur aperiam velit.</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </mat-tab>
+                    <mat-tab label="Schedule">
+                        <div class="input-wrapper">
+                            <mat-form-field>
+                                <mat-label>Enter Activity</mat-label>
+                                <input matInput placeholder="Ex. Visit museum" [(ngModel)]="activity">
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" (click)="addToDoList()">Add</button>
+                        </div>
+                        <div class="example-container">
+                            <h2>To do</h2>
+                          
+                            <div
+                              cdkDropList
+                              #todoList="cdkDropList"
+                              [cdkDropListData]="todo"
+                              [cdkDropListConnectedTo]="[doneList]"
+                              class="example-list"
+                              (cdkDropListDropped)="drop($event)">
+                              <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+                            </div>
+                          </div>
+                          
+                          <div class="example-container">
+                            <h2>Done</h2>
+                          
+                            <div
+                              cdkDropList
+                              #doneList="cdkDropList"
+                              [cdkDropListData]="done"
+                              [cdkDropListConnectedTo]="[todoList]"
+                              class="example-list"
+                              (cdkDropListDropped)="drop($event)">
+                              <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+                            </div>
+                          </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-expansion-panel>
+        </div>
     </div>
 </div>
