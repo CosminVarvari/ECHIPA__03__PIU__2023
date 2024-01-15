@@ -1,21 +1,82 @@
 <div class="create-journey">
-    <app-header></app-header>
-    <div class="create-journey-content">
-        <mat-stepper #stepper>
-            <mat-step>
-              <div>Buna siua</div>
-            </mat-step>
-            <mat-step label="Fill out your address">
-              <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, quae explicabo, iusto neque reiciendis repellendus dolores voluptate nostrum accusantium eligendi dolorem aspernatur modi. Illo, beatae nostrum? Ea culpa ab illo.</div>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              <p>You are now done.</p>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-              </div>
-            </mat-step>
-          </mat-stepper>
-    </div>
+  <app-header></app-header>
+  <div class="create-journey-content">
+    <h1 class="title">Create your perfect journey</h1>
+    <mat-stepper #stepper>
+      <mat-step label="Choose a destination">
+        <form class="destination-form">
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input
+              type="text"
+              placeholder="Pick one"
+              aria-label="Number"
+              matInput
+              [formControl]="destinationName"
+              [matAutocomplete]="auto"
+            />
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='filterCities($event.option.value)'>
+              <mat-option
+                *ngFor="let option of filteredOptions | async"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Choose a departing date</mat-label>
+            <input matInput [matDatepicker]="pickerDeparting" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="pickerDeparting"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerDeparting></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Choose a return date</mat-label>
+            <input matInput [matDatepicker]="pickerReturn">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
+            <mat-datepicker #pickerReturn></mat-datepicker>
+          </mat-form-field>
+        </form>
+        <div class="move-buttons">
+            <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step label="Pick an accomodation">
+        <div class="container">
+            <div class="card-wrapper" *ngFor="let accomodation of filteredAccomodations; index as i; first as isFirst">
+                <mat-card matRipple class="card" (click)="selectAccommodation(accomodation)">
+                    <mat-card-header>
+                        <mat-card-title>{{accomodation.name}}</mat-card-title>
+                        <mat-card-subtitle>{{accomodation.price}}€</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <span *ngFor="let n of numSequence(accomodation.stars);"><mat-icon>star</mat-icon></span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere nam ea, perferendis, veritatis impedit quae a ut ratione molestiae quibusdam aliquam dolores officia consectetur accusantium quas vitae pariatur aperiam velit.</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="move-buttons">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div class="done-wrapper">
+            <span class="done-text">You are now done. Prepare your bags and get ready to go!</span>
+            <button class="create-button" (click)="createJourney()" mat-button>CREATE JOURNEY</button>
+        </div>
+        <div class="move-buttons">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
 </div>

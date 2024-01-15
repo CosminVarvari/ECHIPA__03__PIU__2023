@@ -1,17 +1,103 @@
 .create-journey {
     height: 100vh;
     width: 100vw;
+
     &-content {
-        height: calc(100% - 64px);
+        min-height: calc(100% - 64px);
         width: 100%;
-       
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background: #f8aaff;
+        background: -webkit-linear-gradient(to right, #8dfff4, #f8aaff);
+        background: linear-gradient(to right, #8dfff4, #f8aaff);
+
+        .title {
+            font-family: "Pixelify Sans", sans-serif;
+            margin-top: 50px;
+            font-size: 44px;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
         mat-stepper {
             height: 100%;
-            width: 100%;
-            background: #f8aaff;
-            background: -webkit-linear-gradient(to right, #8dfff4, #f8aaff);
-            background: linear-gradient(to right, #8dfff4, #f8aaff);
+            width: 85%;
+            background: transparent;
+
+            .destination-form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                margin-bottom: 20px;
+                width: 100%;
+
+                mat-form-field {
+                    width: 35%;
+                }
+            }
+
+            .container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+            .card-wrapper {
+                margin-top: 30px;
+                width: 30%;
+                margin-right: 20px;
+
+                .card {
+                    font-family: "Poppins", sans-serif;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .done-wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .done-text {
+                font-family: "Poppins", sans-serif;
+                font-size: 18px;
+                font-weight: bold;
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+
+            .create-button {
+                padding: 20px 60px;
+                background: transparent;
+                border: #333 solid 4px;
+                color: #333;
+                transition: background-color 0.5s ease;
+                border-radius: 50px;
+                font-weight: bold;
+
+                &:hover {
+                    background-color: #ff30f8;
+                    border: #ff30f8 solid 4px;
+                    cursor: pointer;
+                    color: #333;
+                }
+            }
         }
-        
+
+        .move-buttons {
+            margin-top: 20px;
+        }
     }
 }
