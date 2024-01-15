@@ -1,0 +1,33 @@
+<mat-card class="login-card">
+  <mat-card-title class="login-card__title">Login</mat-card-title>
+  <mat-card-content class="login-card__content">
+    <form [formGroup]="loginForm" class="login-form" (submit)="submit()">
+      <mat-form-field appearance="fill" class="login-form__field">
+        <mat-label>Username</mat-label>
+        <input matInput [formControlName]="'username'" placeholder="Enter your username" class="login-form__input">
+        <mat-error *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+          Please enter a valid username
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="login-form__field">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your password" class="login-form__input">
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword" class="login-form__icon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="password && password.errors && password.errors['required']">Password is required</mat-error>
+        <mat-error *ngIf="password && password.errors && password.errors['minlength']">Password must be at least 6 characters</mat-error>
+        <mat-error *ngIf="password && password.errors && password.errors['pattern']">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character</mat-error>
+
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid"
+        class="login-form__button"
+        type="submit">Login
+      </button>
+    </form>
+  </mat-card-content>
+
+  <!-- <mat-card-actions class="login-card__actions">
+    <a href="/register" class="login-card__link">Do not have an account?</a>
+  </mat-card-actions> -->
+</mat-card>

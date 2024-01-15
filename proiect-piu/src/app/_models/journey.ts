@@ -1,6 +1,7 @@
 export interface Journey {
     destination: Destination;
     accomodation: Accomodation;
+    feedback: string;
 }
 
 export interface Accomodation {

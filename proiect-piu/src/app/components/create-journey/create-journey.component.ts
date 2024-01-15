@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Accomodation, Destination, Journey } from 'src/app/_models/journey';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import {
   MatDatepicker,
   MatDatepickerInputEvent,
 } from '@angular/material/datepicker';
+import { DataService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-journey',
@@ -15,7 +16,9 @@ import {
   styleUrls: ['./create-journey.component.scss'],
 })
 export class CreateJourneyComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: DataService) {}
+  @Input() navigateAfterCreate: boolean = true;
+  @Output() emitOnSuccess = new EventEmitter<boolean>();
   destinationName = new FormControl('');
   destination: Destination | undefined;
   options: string[] = [
@@ -110,12 +113,16 @@ export class CreateJourneyComponent implements OnInit {
       weather: weather[random],
       temperature: temperatureRandom,
     };
-    let newJourney = {
+    let newJourney: Journey = {
       destination: destination,
       accomodation: this.selectedAccommodation,
+      feedback: ''
     };
-    localStorage.setItem('journey', JSON.stringify(newJourney));
-    this.router.navigate(['my-journeys']);
+    this.service.addJourney(newJourney);
+    this.emitOnSuccess.emit(true);
+    if (this.navigateAfterCreate){
+      this.router.navigate(['my-journeys']);
+    }
   }
 
   calculateAirplaneTicketCost(): number {

@@ -83,7 +83,8 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -120,7 +121,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule
   ]
 })
 export class AngularMaterialModule { }

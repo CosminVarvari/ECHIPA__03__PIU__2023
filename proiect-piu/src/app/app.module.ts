@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MyJourneysComponent } from './components/my-journeys/my-journeys.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LoginCardComponent } from './components/login-page/login-card/login-card.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     CuisinesComponent,
     TransportComponent,
     MyJourneysComponent,
+    LoginCardComponent,
+    LoginPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
