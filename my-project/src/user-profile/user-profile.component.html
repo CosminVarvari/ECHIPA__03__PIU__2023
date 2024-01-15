@@ -1,0 +1,74 @@
+<mat-card class="profile-card">
+  <mat-card-title class="profile-card__title">User Profile</mat-card-title>
+  <mat-card-content class="profile-card__content">
+    <form [formGroup]="profileForm" (submit)="submit()">
+      <!-- Name Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter your name">
+        <mat-error *ngIf="profileForm.controls['name'].invalid && profileForm.controls['name'].touched">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Age Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input type="number" matInput formControlName="age" placeholder="Enter your age">
+        <mat-error *ngIf="profileForm.controls['age'].invalid && profileForm.controls['age'].touched">
+          Valid age is required (14+)
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Additional fields for travels can be added here -->
+
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" [disabled]="profileForm.invalid" type="submit">
+        Update Profile
+      </button>
+    </form>
+  </mat-card-content>
+  <mat-card-content>
+
+    <h3>Past Travels</h3>
+    <mat-table [dataSource]="pastTravelsDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell *matCellDef="let travel">{{ travel.location }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+        <mat-cell *matCellDef="let travel">{{ travel.time | date }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let travel">{{ travel.price | currency }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </mat-card-content>
+
+  <mat-card-content>
+
+    <h3>Future Travels</h3>
+    <mat-table [dataSource]="futureTravelsDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell *matCellDef="let travel">{{ travel.location }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+        <mat-cell *matCellDef="let travel">{{ travel.time | date }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let travel">{{ travel.price | currency }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+  </mat-card-content>
+</mat-card>
