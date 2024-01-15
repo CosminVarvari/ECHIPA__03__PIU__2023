@@ -1,0 +1,21 @@
+<div class="create-journey">
+    <app-header></app-header>
+    <div class="create-journey-content">
+        <mat-stepper #stepper>
+            <mat-step>
+              <div>Buna siua</div>
+            </mat-step>
+            <mat-step label="Fill out your address">
+              <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, quae explicabo, iusto neque reiciendis repellendus dolores voluptate nostrum accusantium eligendi dolorem aspernatur modi. Illo, beatae nostrum? Ea culpa ab illo.</div>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step>
+          </mat-stepper>
+    </div>
+</div>

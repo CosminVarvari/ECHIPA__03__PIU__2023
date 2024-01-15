@@ -1,0 +1,17 @@
+.create-journey {
+    height: 100vh;
+    width: 100vw;
+    &-content {
+        height: calc(100% - 64px);
+        width: 100%;
+       
+        mat-stepper {
+            height: 100%;
+            width: 100%;
+            background: #f8aaff;
+            background: -webkit-linear-gradient(to right, #8dfff4, #f8aaff);
+            background: linear-gradient(to right, #8dfff4, #f8aaff);
+        }
+        
+    }
+}
