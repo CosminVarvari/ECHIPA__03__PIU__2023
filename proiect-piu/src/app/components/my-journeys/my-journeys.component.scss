@@ -1,0 +1,16 @@
+.my-journeys {
+    height: 100vh;
+    width: 100vw;
+
+    &-content {
+        min-height: calc(100% - 64px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background: #f8aaff;
+        background: -webkit-linear-gradient(to right, #8dfff4, #f8aaff);
+        background: linear-gradient(to right, #8dfff4, #f8aaff);
+    }
+}

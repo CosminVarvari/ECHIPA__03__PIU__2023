@@ -11,6 +11,12 @@ import { CreateJourneyComponent } from './components/create-journey/create-journ
 import { HeaderComponent } from './components/header/header.component';
 import { CuisinesComponent } from './components/cuisines/cuisines.component';
 import { TransportComponent } from './components/transport/transport.component';
+import { AsyncPipe } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MyJourneysComponent } from './components/my-journeys/my-journeys.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +26,19 @@ import { TransportComponent } from './components/transport/transport.component';
     HeaderComponent,
     CuisinesComponent,
     TransportComponent,
+    MyJourneysComponent,
   ],
   imports: [
-    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    AsyncPipe,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -20,4 +20,7 @@ export class HeaderComponent {
   goToTransport() {
     this.router.navigate(['transport']);
   }
+  goToMyJourneys() {
+    this.router.navigate(['my-journeys']);
+  }
 }
