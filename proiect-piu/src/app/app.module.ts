@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,8 +9,10 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { HomeComponent } from './components/home/home.component';
 import { CreateJourneyComponent } from './components/create-journey/create-journey.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CuisinesComponent } from './components/cuisines/cuisines.component';
+import { TransportComponent } from './components/transport/transport.component';
 import { AsyncPipe } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,8 +25,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     HomeComponent,
     CreateJourneyComponent,
     HeaderComponent,
+    CuisinesComponent,
+    TransportComponent,
     MyJourneysComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     DragDropModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

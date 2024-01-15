@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   constructor(private router: Router) {}
@@ -13,7 +13,14 @@ export class HeaderComponent {
     this.router.navigate(['home']);
   }
 
+  goToCuisines() {
+    this.router.navigate(['cuisines']);
+  }
+
+  goToTransport() {
+    this.router.navigate(['transport']);
+  }
   goToMyJourneys() {
-    this.router.navigate(["my-journeys"]);
+    this.router.navigate(['my-journeys']);
   }
 }
