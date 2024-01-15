@@ -1,0 +1,8 @@
+<mat-toolbar class="header">
+  <span>Journey planner</span>
+  <button class="header-menu" mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="goToHome()">Home</button>
+    <button mat-menu-item (click)="goToMyJourneys()">My Journeys</button>
+  </mat-menu>
+</mat-toolbar>
