@@ -1,0 +1,51 @@
+<!-- transport.component.html -->
+<app-header></app-header>
+
+<div class="transport">
+  <div *ngIf="!selectedCity" class="form-container">
+    <h2>Choose your destination</h2>
+    <form>
+      <label for="city">Select a city:</label>
+      <select id="city" name="city" [(ngModel)]="selectedCity" required>
+        <option value="" disabled>Select a city</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Budapest">Budapest</option>
+        <option value="London">London</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Paris">Paris</option>
+        <option value="Rome">Rome</option>
+      </select>
+      <button type="button" *ngIf="selectedCity" (click)="resetForm()">
+        Reset
+      </button>
+    </form>
+  </div>
+  <div class="selected-city-card" *ngIf="selectedCity">
+    <h3>Discover transportation in {{ selectedCity }}</h3>
+    <p>{{ getTransportDescription(selectedCity) }}</p>
+  </div>
+  <ul class="cards" *ngIf="selectedCity">
+    <li
+      class="cards_item"
+      *ngFor="let transport of hardcodedTransport[selectedCity]"
+    >
+      <div class="card">
+        <div class="card_image">
+          <img
+            [src]="getImagePath(selectedCity, transport.image)"
+            alt="{{ transport.title }}"
+          />
+        </div>
+        <div class="card_content">
+          <h2 class="card_title">{{ transport.title }}</h2>
+          <div class="card_text">
+            <p>{{ transport.description }}</p>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="reset-button">
+    <button type="button" (click)="resetForm()">Reset</button>
+  </div>
+</div>
